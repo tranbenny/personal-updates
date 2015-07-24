@@ -10,8 +10,8 @@ https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
-from whitenoise.django import DjangowhiteNoise
+from dj_static import Cling
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 
-application = DjangoWhiteNoise(get_wsgi_application())
+application = Cling(get_wsgi_application())
