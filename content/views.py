@@ -9,15 +9,11 @@ def list(request):
 	titles = requests.get(nyTimesAPI)
 	info = titles.json()
 	results = info["results"]
-	print("Published date: " + results["published_date"])
 	listOfBestSellers = results["lists"] #array
 	allBooks = []
 	for lists in listOfBestSellers: 
 		if (lists["list_name"] == "Combined Print and E-Book Nonfiction"):
 			allBooks = lists["books"]
-			break
-	for book in allBooks:
-		print("\n")
-		print("Title: " + book["title"])
-		print("Author: " + book["author"])	
-	return render(request, "updates/updates_list.html")
+			break	
+	renderOptions = { 'books' : allBooks, 'date' : results["published_date"]}
+	return render(request, "updates/updates_list.html", renderOptions)
